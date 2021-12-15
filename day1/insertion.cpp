@@ -14,9 +14,18 @@ vector<string> split(const string &);
  *  2. INTEGER_ARRAY arr
  */
 
-void insertionSort1(int n, vector<int> arr) {
+int insertionSort1(int n, vector<int> arr) {
+    if(n < 0 || n > 10000) {
+        return false;
+    }
+    for(int i = 0; i < arr.size(); i++) {
+        if(arr[i] > 10000 || arr[i] < -10000) {
+            return false;
+        }
+    }
+    
     int number = arr[n-1];
-    for(int i = n-2; i >=0; i--) {
+    for(int i = n-2; i >=-1; i--) {
         if(number < arr[i]) {
             arr[i+1] = arr[i];
             for(int k = 0; k < n; k++) {
@@ -25,11 +34,14 @@ void insertionSort1(int n, vector<int> arr) {
             cout << endl;
         } else {
             arr[i + 1] = number;
+            break;
         }
     }
                 for(int k = 0; k < n; k++) {
                 cout << arr[k] << " ";
             }
+    return 0;
+    
 }
 
 int main()
