@@ -15,22 +15,33 @@ vector<string> split(const string &);
 
 vector<int> countingSort(vector<int> arr) {
     vector<int>count;
-    int numberNotValid = false;
     for(int i =  0; i < arr.size(); i++) {
-        if(arr[i] <0 || arr[i] >100) {
-            numberNotValid = true;
+    }
+    // finding maxValue and minValue
+    int maxValue  = arr[0];
+    int minValue = arr[0];
+    
+    for (int i = 0; i < arr.size(); i++) {
+        if(maxValue < arr[i])
+        {
+            maxValue = arr[i];
+        }
+        
+        if (minValue > arr[i]) {
+            minValue = arr[i];
         }
     }
-    if((arr.size() >=100 && arr.size() <=1000000) && !numberNotValid) {
-            for(int i = 0; i < 100; i++) {
+    int range = maxValue - minValue;
+    // initializing all the elements to zero
+    for(int i = 0; i <= range; i++) {
         count.push_back(0);
     }
-    for(int i = 0; i < 100; i++) {
+    
+    for(int i = 0; i < arr.size(); i++) {
         count[arr[i]]++;
     }
     for(int i = 0; i < count.size(); i++) {
         cout << count[i] << " ";
-    }
     }
     
     return count;
