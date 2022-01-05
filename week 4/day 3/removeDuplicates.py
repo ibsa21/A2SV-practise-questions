@@ -1,11 +1,12 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        count = Counter(nums)
-        listA = list(count.values())
-        for i in range(1, len(set(nums))):
-            index = 0
-            for j in range(0, i):
-                index += listA[j]
-            nums[i], nums[index] = nums[index], nums[i]
-            
+        index = 0
+        j = 0
+        for i in set(nums):
+            if j==0:
+                nums[j] = nums[0]
+            else:
+                index += nums.count(nums[j-1])
+                nums[j], nums[index] = nums[index], nums[j]
+            j +=1
         return len(set(nums))
