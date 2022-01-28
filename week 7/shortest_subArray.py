@@ -34,6 +34,7 @@ class Solution:
                 mono_queue.append([sumValue, i])
                 
         return -1 if smallest ==100001 else smallest
+    #end
                 
                 
                 
