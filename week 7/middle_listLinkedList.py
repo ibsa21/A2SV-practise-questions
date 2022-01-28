@@ -6,6 +6,7 @@
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
+        #first-approach
         counter = 0
         current = ListNode()
         current = head
@@ -20,4 +21,14 @@ class Solution:
             i +=1
         
         return current
-            
+    
+    #second approach
+        slowPointer  = head
+        fastPointer = head
+        
+        while(fastPointer and  fastPointer.next):
+            fastPointer = fastPointer.next.next;
+                
+            slowPointer = slowPointer.next;
+        
+        return slowPointer
