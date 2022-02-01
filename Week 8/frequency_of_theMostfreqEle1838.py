@@ -1,5 +1,13 @@
 class Solution:
     def maxFrequency(self, nums: List[int], k: int) -> int:
+        """
+        Approaches taken to solve the problem:
+                step1. Sort the numbers - sorting takes O(nlogn)
+                step2. use slide window technique - the size of the window is right-left + 1
+                
+        """
+        
+        
         nums.sort()
         left = 0
         right = 0
