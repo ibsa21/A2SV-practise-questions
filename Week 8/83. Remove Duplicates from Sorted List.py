@@ -21,6 +21,14 @@ class Solution:
                 curr_pointer = curr_pointer.next
                 
         return newHead
+    
+    """
+    Algorithm
+        3 pointer is needed for this problem
+        The first pointer (curr_pointer) is used to iterate over the whole linked list
+        The second pointer(return_head) is used to compare the val on the current new linked list and current iteration of old linked list
+        The third pointer (newHead) is used only once and it stores the head of return_head pointer
+    """
             
             
             
