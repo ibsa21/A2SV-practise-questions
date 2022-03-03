@@ -29,7 +29,7 @@ class Solution:
         self.buildHeap(arr, n)
         x = 1
         for i in range(n-1, -1, -1):
-            arr[i], arr[0] = arr[0], arr[i]
+            self.swap(arr, 0, i)
             self.heapify(arr, n-x , 0)
             x += 1
     
