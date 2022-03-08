@@ -9,12 +9,9 @@ class Solution:
         
         self.tilt_sum = 0
         def dfs(root):
-            #print(root.val)
+            
             if not root:
                 return 0
-            
-            if not root.left and not root.right:
-                return root.val
             
             left = dfs(root.left)
             right = dfs(root.right)
