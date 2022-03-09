@@ -21,7 +21,7 @@ class Solution:
         res = 0
         for i in range(row):
             if i not in visited:
-                dfs(i)
                 res += 1
+                dfs(i)
         return res
                 
