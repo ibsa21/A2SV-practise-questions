@@ -30,7 +30,7 @@ class Solution:
             
         for i in range(row_len):
             for j in range(col_len):
-                if (i, j) not in visited and grid[i][j]:
+                if (i, j) not in visited and grid[i][j]==1:
                     visited.add((i, j))
                     queue.append((i, j))
                     bfs(i, j)
