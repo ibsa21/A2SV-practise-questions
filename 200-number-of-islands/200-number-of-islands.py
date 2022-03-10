@@ -15,8 +15,6 @@ class Solution:
         #print(queue)
         
         def bfs(row, col):
-            visited.add((row, col))
-            queue.append((row, col))
             
             while queue:
 
@@ -29,22 +27,13 @@ class Solution:
                         visited.add((new_row, new_col))
                         queue.append((new_row, new_col))
         
+        #iterate over the grid
         for i in range(row_len):
             for j in range(col_len):
                 if grid[i][j]=="1" and (i, j) not in visited:
+                    visited.add((i, j))
+                    queue.append((i, j))
                     bfs(i, j)
                     no_islands += 1
                 
         return no_islands
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-            
-            
-        
