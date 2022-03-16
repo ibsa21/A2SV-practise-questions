@@ -4,15 +4,17 @@ class Solution:
         left = 0
         right = len(nums)-1
         
-        while left <= right:
+        def binary_search(left, right):
+            
+            if left > right:
+                return -1
             
             mid = left + (right-left)//2
-            
             if nums[mid]==target:
                 return mid
             elif nums[mid] > target:
-                right = mid-1
+                return binary_search(left, mid-1)
             else:
-                left = mid + 1
-                
-        return -1
+                return binary_search(mid + 1, right)
+        
+        return binary_search(left, right)
