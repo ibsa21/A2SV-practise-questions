@@ -1,29 +1,35 @@
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         
-        left = 0
-        right = len(nums)-1
+        best = -1
         
-        def binary_search(left, right,):
+        def binary_search(left, right, is_first):
+            nonlocal best
+            mid = left + (right-left)//2
+            
             
             if left > right:
-                return [-1, -1]
+                return -1 if best==-1 else best
             
-            mid = left + (right-left)//2
-            if nums[mid]==target:
-                start = mid
-                end = mid
-                while start > 0 and  nums[start-1]==target:
-                    start -=1
-                
-                while end < len(nums)-1 and nums[end + 1]==target:
-                    end  += 1
-                    
-                return [start, end]
-            elif nums[mid] > target:
-                return binary_search(left, mid-1)
+            if nums[mid] > target:
+                return binary_search(left, mid-1, is_first)
+            elif nums[mid] < target:
+                return binary_search(mid + 1, right, is_first)
             else:
-                return binary_search(mid + 1, right)
-            
-        return binary_search(left, right)
+                if is_first:
+                    right = mid -1
+                else:
+                    left = mid + 1
+                    
+                best = mid
+                return binary_search(left, right, is_first)
         
+        left = 0
+        right = len(nums)-1
+        first_index = binary_search(left, right, True)
+        print(first_index)
+        
+        if first_index == -1:
+            return [-1 ,-1]
+        
+        return [first_index, binary_search(left, right, False)]
