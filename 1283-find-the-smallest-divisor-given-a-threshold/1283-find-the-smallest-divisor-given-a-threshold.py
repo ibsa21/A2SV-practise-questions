@@ -2,7 +2,7 @@ class Solution:
     def smallestDivisor(self, nums: List[int], threshold: int) -> int:
         
         low = 1
-        high  = sum(nums)
+        high  = max(nums)
         min_divisor = high
         
         def divide_number(divisor):
