@@ -12,9 +12,9 @@ class Solution:
             if not root:
                 return (root, depth-1)
             
-            
-            left = dfs(root.left, depth + 1)
-            right = dfs(root.right, depth + 1)
+            depth += 1
+            left = dfs(root.left, depth)
+            right = dfs(root.right, depth)
 
             
             if left[1]==right[1]:
