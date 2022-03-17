@@ -8,22 +8,18 @@ class TopVotedCandidate:
         
         max_person = (0, None)
         
-        def find_dictValue(item):
-            for key in self.counter:
-                if key==item:
-                    return self.counter[key]
-            return 0
-    
+        for i in range(len(self.persons)):
+            self.counter[self.persons[i]] = 0
+        
         for i in range(len(self.times)):
             p = persons[i]
+            self.counter[p] +=1
             
-            self.counter[p] = find_dictValue(p) + 1
-            
-            if self.counter[p]>=max_person[0]:
+            if self.counter[p] >= max_person[0]:
                 max_person = (self.counter[p], p)
                 
             self.winner[i]=max_person[1]
-
+            
     def q(self, t: int) -> int:
     
         best = 0
