@@ -1,8 +1,6 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         
-    
-        
         def binary_search(low, high):
             
             if low > high:
@@ -23,7 +21,6 @@ class Solution:
             if i < len(nums) -1 and  nums[i] > nums[i+1]:
                 pivot_index = i + 1
                 break
-        print(pivot_index)
         
         if pivot_index == -1:
             return binary_search(0, len(nums)-1)
