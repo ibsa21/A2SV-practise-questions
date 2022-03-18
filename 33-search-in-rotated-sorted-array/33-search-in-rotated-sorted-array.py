@@ -24,11 +24,9 @@ class Solution:
         if pivot_index == -1:
             return binary_search(0, len(nums)-1)
         else:
-            if nums[pivot_index] == target:
-                return pivot_index
-            elif nums[0] <= target:
+            if nums[0] <= target:
                 return binary_search(0, pivot_index -1)
-            elif nums[-1] >= target:
+            elif nums[-1] >= target or nums[pivot_index]==target:
                 return binary_search(pivot_index, len(nums)-1)
             else:
                 return -1
