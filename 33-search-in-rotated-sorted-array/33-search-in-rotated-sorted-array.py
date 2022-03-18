@@ -6,8 +6,7 @@ class Solution:
             if low > high:
                 return -1
             mid =  low + (high - low)//2
-            
-            print(mid, nums[mid])
+
             if nums[mid]==target:
                 return mid
             elif nums[mid] > target:
