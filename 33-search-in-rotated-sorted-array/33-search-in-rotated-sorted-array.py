@@ -1,6 +1,23 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         
+        pivot_index = -1
+        
+        def search_range(low, high, k_target):
+            nonlocal pivot_index
+            
+            if low > high:
+                return
+            
+            mid = low + (high-low)//2
+            if k_target < nums[mid]:
+                search_range(mid + 1, high, k_target)
+            elif k_target > nums[mid]:
+                pivot_index = mid
+                search_range(low, mid-1, k_target)
+                
+        search_range(1, len(nums)-1, nums[0])
+        
         def binary_search(low, high):
             
             if low > high:
@@ -13,13 +30,6 @@ class Solution:
                 return binary_search(low, mid-1)
             else:
                 return binary_search(mid + 1, high)
-        
-        pivot_index = -1
-        
-        for i in range(len(nums)):
-            if i < len(nums) -1 and  nums[i] > nums[i+1]:
-                pivot_index = i + 1
-                break
         
         if pivot_index == -1:
             return binary_search(0, len(nums)-1)
