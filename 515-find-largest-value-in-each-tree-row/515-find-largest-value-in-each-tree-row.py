@@ -15,14 +15,16 @@ class Solution:
         while q:
             q_len = len(q)
             
-            level_nodes = []
+            max_nodes = -float(inf)
             for i in range(q_len):
                 node = q.popleft()
                 
                 if node:
-                    level_nodes.append(node.val)
+                    if node.val > max_nodes:
+                        max_nodes = node.val
                     q.append(node.left)
                     q.append(node.right)
-            if level_nodes:
-                res.append(max(level_nodes))
+                
+            if max_nodes != -float(inf):
+                res.append(max_nodes)
         return res
