@@ -1,9 +1,6 @@
 class Solution:
     def minimumOperations(self, nums: List[int]) -> int:
         
-        if len(nums)==1:
-            return 0
-        
         odd_freq = {}
         even_freq = {}
         
