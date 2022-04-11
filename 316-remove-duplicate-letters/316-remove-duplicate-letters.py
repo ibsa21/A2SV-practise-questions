@@ -2,7 +2,7 @@ class Solution:
     def removeDuplicateLetters(self, s: str) -> str:
         
         letter_count = Counter(s)
-        mono_stack  = deque()
+        mono_stack  = []
         visited = set()
         
         for i in range(len(s)):
@@ -15,8 +15,6 @@ class Solution:
                     letter_count[s[removed]] -= 1
 
                     visited.remove(s[removed])
-
-            
             
                 mono_stack.append(i)
                 visited.add(s[i])
