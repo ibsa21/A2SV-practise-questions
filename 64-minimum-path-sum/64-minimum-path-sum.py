@@ -3,11 +3,19 @@ class Solution:
         
         row_len, col_len  = len(grid), len(grid[0])
         
-        table = [[float(inf)] * (col_len + 1) for j in range(row_len + 1)]
-        table[row_len -1][col_len]  = 0
+        table = [float(inf)] * col_len
+        table[-1] = grid[row_len-1][col_len-1]
         
-        for r in range(row_len - 1, -1, -1):
-            for c in range(col_len -1, -1, -1):
-                table[r][c] = grid[r][c] + min(table[r + 1][c], table[r][c + 1])
+        for r in range(row_len -1, -1, -1):
+            for c in range(col_len-1, -1, -1):
                 
-        return table[0][0]
+                if r== row_len -1 and c==col_len -1:
+                    continue
+                    
+                down_value = table[c] if r + 1 < row_len else float(inf)
+                right_value = table[c + 1] if c + 1 < col_len else float(inf)
+                
+                table[c] = grid[r][c] + min(down_value, right_value)
+                
+        return table[0]
+                
