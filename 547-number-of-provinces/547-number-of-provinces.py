@@ -1,27 +1,26 @@
+class UnionFind:
+    def __init__(self,size):
+        self.parent ={i:i for i in range(size)}
+        # self.rank = [1] * size
+    def find(self,x):
+        while(self.parent[x] != x):
+            x = self.parent[x]         
+        return x
+            
+    
+    def union(self,x,y):
+        xp,yp = self.find(x),self.find(y)
+        # if self.rank[xp] < self.rank[yp]:
+        #     xp,yp = yp,xp
+            
+        self.parent[yp] = xp
+        # self.rankp[yp] += self.rank[xp]
+        
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        row, col = map(len, (isConnected, isConnected[0]))
-        
-        adjecancy_list = {}
-        
-        for i in range(row):
-            adjecancy_list[i] = []
-            for j in range(col):
-                if isConnected[i][j] == 1 and i !=j:
-                    adjecancy_list[i].append(j)
-        
-        visited = set()
-        
-        def dfs(node):
-            visited.add(node)    
-            for n in adjecancy_list[node]:
-                if n not in visited:
-                    dfs(n)
-        
-        res = 0
-        for i in range(row):
-            if i not in visited:
-                res += 1
-                dfs(i)
-        return res
-                
+        uf = UnionFind(len(isConnected))
+        for i in range(len(isConnected)):
+            for j in range(len(isConnected[0])):
+                if i != j and isConnected[i][j] == 1:
+                    uf.union(i,j)
+        return len(set([uf.find(i) for i in range(len(isConnected))]))
