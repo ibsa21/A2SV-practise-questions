@@ -25,7 +25,9 @@ class UnionFind:
                 xp, yp = yp, xp
                 
             self.parent[yp] = xp
-            self.rank[xp] +=1 
+            
+            if self.rank[xp] == self.rank[yp]:
+                self.rank[xp] +=1 
     
     def answer(self):
         return self.number_province
