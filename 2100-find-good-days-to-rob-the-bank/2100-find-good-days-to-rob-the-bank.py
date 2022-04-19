@@ -5,8 +5,8 @@ class Solution:
             return [i for i in range(len(security))]
         
         #approach number one - time-complexity O(N), space-complexity O(N)
-        left_goodday, left = set(), 1
-        right_goodday, right = set(), len(security) -2
+        left_goodday, left = [0 for i in range(len(security))], 1
+        right_goodday, right = [0 for i in range(len(security))], len(security) -2
         
         
         #one-time from left
@@ -14,30 +14,18 @@ class Solution:
         while left < len(security):
             
             if security[left] <= security[left -1]:
-                robbing_day += 1
-            else:
-                robbing_day = 0
-        
-            
-            if robbing_day >= time:
-                left_goodday.add(left)
+                left_goodday[left] = 1  + left_goodday[left -1]
             
             left += 1
         
-        robbing_day = 0
         while right > -1:
             
             if security[right] <= security[right + 1]:
-                robbing_day += 1
-            else:
-                robbing_day  = 0
-            
-            if robbing_day >= time:
-                right_goodday.add(right)
-            
+                right_goodday[right] = 1 + right_goodday[right + 1]
             right -= 1
+    
         
-        return left_goodday.intersection(right_goodday)
+        return [ i for i in range(len(security)) if right_goodday[i] >=time and left_goodday[i] >= time]
             
         
         #second approach - not so eficient
