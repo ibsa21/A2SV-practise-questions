@@ -1,9 +1,6 @@
 class Solution:
     def goodDaysToRobBank(self, security: List[int], time: int) -> List[int]:
         
-        if time==0:
-            return [i for i in range(len(security))]
-        
         #approach number one - time-complexity O(N), space-complexity O(N)
         left_goodday, left = [0 for i in range(len(security))], 1
         right_goodday, right = [0 for i in range(len(security))], len(security) -2
@@ -27,8 +24,47 @@ class Solution:
         
         return [ i for i in range(len(security)) if right_goodday[i] >=time and left_goodday[i] >= time]
             
+        #approach number tw0 - time-complexity O(N), space-complexity O(N)
+
+        if time==0:
+            return [i for i in range(len(security))]
         
-        #second approach - not so eficient
+        left_goodday, left = set(), 1
+        right_goodday, right = set(), len(security) -2
+        
+        
+        #one-time from left
+        robbing_day = 0
+        while left < len(security):
+            
+            if security[left] <= security[left -1]:
+                robbing_day += 1
+            else:
+                robbing_day = 0
+        
+            
+            if robbing_day >= time:
+                left_goodday.add(left)
+            
+            left += 1
+        
+        robbing_day = 0
+        while right > -1:
+            
+            if security[right] <= security[right + 1]:
+                robbing_day += 1
+            else:
+                robbing_day  = 0
+            
+            if robbing_day >= time:
+                right_goodday.add(right)
+            
+            right -= 1
+        
+        return left_goodday.intersection(right_goodday)
+            
+        
+        #third approach - not  eficient - time-complexity O(N2) space complexity O(N)
         def in_range(i):
             return i - time >= 0 and len(security) - time > i
         
@@ -50,4 +86,5 @@ class Solution:
             left += 1
         
         return result
+                
                 
