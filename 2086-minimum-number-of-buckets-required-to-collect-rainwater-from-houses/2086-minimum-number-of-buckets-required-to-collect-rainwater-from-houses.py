@@ -34,7 +34,6 @@ class Solution:
             
             if street[i] == 'H':
                 value = helper_choose(i)
-                print(value, i)
                 if value != "IMPOSSIBLE":
                     
                     if  street[value] == '.':
