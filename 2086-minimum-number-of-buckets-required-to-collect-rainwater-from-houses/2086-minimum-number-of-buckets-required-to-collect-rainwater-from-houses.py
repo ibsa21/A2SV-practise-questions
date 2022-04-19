@@ -2,8 +2,11 @@ class Solution:
     def minimumBuckets(self, street: str) -> int:
         
         if len(street) == 1:
-            return -1 if street[0] == 'H' else 0
-        
+            if street[0] == 'H':
+                return -1
+            else:
+                return 0
+            
         street = list(street)
         def helper_choose(i):
             
@@ -12,10 +15,13 @@ class Solution:
             elif i + 1 >= len(street):
                 return i - 1 if street[i -1] in ('B', '.') else "IMPOSSIBLE"
             else:
-                left_found, right_found= street[i -1] == '.', street[i + 1] == '.'
+                left_found = street[i -1] in ('B', '.')
+                right_found = street[i + 1] in ('B', '.')
                 
-                if 'B' in (street[i - 1], street[i + 1]):
-                    return i + 1 if street[i + 1] == 'B' else i - 1
+                if street[i-1] == 'B':
+                    return i -1
+                elif street[i + 1] == 'B':
+                    return i + 1
                 elif left_found and right_found or right_found:
                     return i + 1
                 elif left_found:
@@ -35,4 +41,5 @@ class Solution:
                         street[value] = 'B'
                 else:
                     return -1
+                
         return count
