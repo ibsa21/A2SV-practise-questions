@@ -2,6 +2,7 @@ class UnionFind:
     def __init__(self,size):
         self.parent ={i:i for i in range(size)}
         self.rank = {i: 0 for i in range(size)}
+        self.number_province = size
         
         
         # self.rank = [1] * size
@@ -19,6 +20,7 @@ class UnionFind:
         
         #merge by rank
         if xp != yp:
+            self.number_province -= 1
             if self.rank[xp]  < self.rank[yp]:
                 xp, yp = yp, xp
                 
@@ -26,7 +28,11 @@ class UnionFind:
             
             if self.rank[xp] == self.rank[yp]:
                 self.rank[xp] +=1 
-        
+    
+    def answer(self):
+        return self.number_province
+    
+    
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         uf = UnionFind(len(isConnected))
@@ -34,5 +40,5 @@ class Solution:
             for j in range(len(isConnected[0])):
                 if i != j and isConnected[i][j] == 1:
                     uf.union(i,j)
-                    
-        return len(set([uf.find(i) for i in range(len(isConnected))]))
+        
+        return uf.answer()
