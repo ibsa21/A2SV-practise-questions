@@ -12,6 +12,5 @@ class Solution:
             table[i] = max(table[i + 1] + nums[i], nums[i])
             max_result = max(table[i], max_result)
         
-        print(table)
         return max_result
             
