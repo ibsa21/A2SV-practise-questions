@@ -5,8 +5,11 @@ class Solution:
         events.sort()
         
         curr_time_max, global_max_time = 0, 0
+        
+        #step -2: store the end_time and value of intervals
         heap = []
         
+        # step-3: for each intervals find a event that starts before it and calculate the max_time
         for curr_interval in events:
             
             while heap:
