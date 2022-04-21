@@ -4,7 +4,7 @@ class Solution:
         #step - 1: sort the events based on starting time of events
         events.sort()
         
-        curr_time_max, global_max_time = 0, 0
+        curr_interval_max, global_max_time = 0, 0
         
         #step -2: store the end_time and value of intervals
         heap = []
@@ -15,11 +15,11 @@ class Solution:
             while heap:
                 
                 if heap[0][0] < curr_interval[0]:
-                    curr_time_max = max(curr_time_max, heappop(heap)[1])
+                    curr_interval_max = max(curr_interval_max, heappop(heap)[1])
                 else:
                     break
             
-            global_max_time = max(global_max_time, curr_time_max + curr_interval[2])
+            global_max_time = max(global_max_time, curr_interval_max + curr_interval[2])
             heappush(heap, (curr_interval[1], curr_interval[2]))
         
         return global_max_time
