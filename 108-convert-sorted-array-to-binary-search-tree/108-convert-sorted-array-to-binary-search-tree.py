@@ -9,12 +9,14 @@ class Solution:
         
         if not nums:
             return None
+        
         mid_index = len(nums)//2
         
         bst = TreeNode(nums[mid_index])
         
         bst.left = self.sortedArrayToBST(nums[:mid_index])
         bst.right = self.sortedArrayToBST(nums[mid_index + 1:])
+        
         return bst
             
             
