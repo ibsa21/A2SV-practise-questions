@@ -18,20 +18,17 @@ class Trie:
                 root.children[char] = TrieNode(char)
             
             root = root.children[char]
-        
         root.end_word = True
         
-    
     def search_word(self, word):
         
         heap = []
+        
         def dfs(root, string):
             nonlocal heap
-            
             string += root.char
             
-            if not root:
-                return string
+            if not root:return string
             
             if root.end_word:
                 heapq.heappush(heap, string)
@@ -45,6 +42,7 @@ class Trie:
         root = self.root
         result = []
         str_now = ''
+        
         for i in range(len(word)):
             char  = word[i]
             
@@ -59,9 +57,6 @@ class Trie:
             heap  = []
             
         return result
-            
-            
-        
         
 class Solution:
     def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
@@ -70,7 +65,6 @@ class Solution:
         
         for product in products:
             products_trie.add_word(product)
-        
         
         return products_trie.search_word(searchWord)
         
