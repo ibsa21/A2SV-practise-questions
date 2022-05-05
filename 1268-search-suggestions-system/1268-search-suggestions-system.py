@@ -8,7 +8,6 @@ class TrieNode:
 class Trie:
     def __init__(self):
         self.root = TrieNode()
-        self.memo = {}
     
     def add_word(self, word):
         root = self.root
