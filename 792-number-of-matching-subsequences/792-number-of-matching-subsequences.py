@@ -6,6 +6,8 @@ class TrieNode:
 class Solution:
     def numMatchingSubseq(self, s: str, words: List[str]) -> int:
         root = TrieNode()
+        
+        #build trie data structure
         for word in words:
             cur = root
             for char in word:
@@ -14,21 +16,23 @@ class Solution:
                 cur = cur.children[char]
             cur.ends += 1
         
+        
         count = 0
-        def dfs(k,node, i):
+        def dfs(key, node, i):
+            
             nonlocal count
             if not node:return
             
-            while i < len(s):
-                if s[i] == k:
-                    break
+            #determine whether subsequence is valid or not
+            while i < len(s) and s[i] != key:
                 i +=1
-                
+            
+            #subsequence valid
             if i < len(s):
                 count += node.ends
-                for k,child in node.children.items():
-                    dfs(k,child, i+1)
+                for key,child in node.children.items():
+                    dfs(key,child, i+1)
         
-        for k,v in root.children.items():
-            dfs(k,v,0)
+        for key,value in root.children.items():
+            dfs(key,value, 0)
         return count
