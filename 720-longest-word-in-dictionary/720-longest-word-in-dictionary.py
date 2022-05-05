@@ -1,24 +1,19 @@
 class TrieNode:
-    
     def __init__(self):
         self.children = {}
         self.end = False
-    
         
 class Solution:
     def longestWord(self, words: List[str]) -> str:
         
         trie_data = TrieNode()
-        
         #building trie data
         for word in words:
             root  = trie_data
             for char in word:
                 if char not in root.children:
                     root.children[char]  = TrieNode()
-                
                 root = root.children[char]
-            
             root.end = True
         
         result = ''
@@ -42,5 +37,3 @@ class Solution:
         for node in trie_data.children:
             dfs(trie_data.children[node], '', node)
         return result
-                             
-        
