@@ -23,9 +23,9 @@ class Solution:
         
         result = ''
         def dfs(trie, string, char):
-            nonlocal result            
-            if trie.end:
-                string += char    
+            nonlocal result
+            
+            if trie.end:string += char    
             else:return string
                 
             if not trie.children: return string
