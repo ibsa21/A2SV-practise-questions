@@ -1,8 +1,6 @@
 class Solution:
     def addBinary(self, a: str, b: str) -> str:
-        
         carry = 0
-        
         i,j = len(a)-1, len(b)-1
         
         result = []
@@ -14,16 +12,13 @@ class Solution:
             if mid_sum > 1:
                 carry = 1
                 mid_sum -= 2
-            else:
-                carry = 0
+            else:carry = 0
+                
             result.append(mid_sum)
-            
-            
             if i >= 0: i -=1
             if j >= 0: j -=1
-        if carry > 0:
-            result.append(1)
-        
+                
+        if carry > 0:result.append(1)
         return ''.join(list(map(str, result[::-1])))
                         
             
