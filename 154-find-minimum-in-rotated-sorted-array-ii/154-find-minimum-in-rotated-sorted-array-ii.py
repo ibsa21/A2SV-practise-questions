@@ -7,8 +7,7 @@ class Solution:
         def search_range(low, high, k_target):
             nonlocal pivot_index
             
-            if low > high:
-                return
+            if low > high:return
             
             mid = low + (high-low)//2
             if k_target < nums[mid]:
