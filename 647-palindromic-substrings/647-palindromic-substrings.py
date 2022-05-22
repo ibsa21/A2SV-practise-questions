@@ -1,6 +1,5 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
-        print(len(s))
         if len(set(s))==1:return int(len(s) * ((len(s) + 1)/2))
         
         def is_palindrome(string):
