@@ -1,27 +1,28 @@
 class Solution:
     def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
         
-        def binarySearch(nums, h):
-            l, r = 0, len(nums)-1
-
-            while l <= r:
-                mid = l + (r-l) // 2
-                if nums[mid] == h:
+        def find_range(arr, width_target):
+            
+            def binary_search(low, high):
+                if low > high:return low
+                
+                mid = low + (high-low)//2
+                
+                if arr[mid]== width_target:
                     return mid
-                if nums[mid] < h:
-                    l = mid + 1
+                elif arr[mid] < width_target:
+                    return binary_search(mid + 1, high)
                 else:
-                    r = mid - 1
-            return l
-        
-        
+                    return binary_search(low, mid-1)
+            return binary_search(0, len(arr)-1)
+            
         envelopes.sort(key= lambda x: (x[0], -x[1]))
-        lis = []
+        res_list = []
         
-        for w, h in envelopes:
-            left = binarySearch(lis, h)
-            if left == len(lis):
-                lis.append(h)
+        for height, width in envelopes:
+            left = find_range(res_list, width)
+            if left == len(res_list):
+                res_list.append(width)
             else:
-                lis[left] = h
-        return len(lis)
+                res_list[left] = width
+        return len(res_list)
