@@ -7,6 +7,7 @@ class Solution:
         res = []
         
         def dfs(idx, cur_combination):
+            
             if len(cur_combination) == len(digits):
                 if cur_combination:
                     res.append(''.join(cur_combination))
@@ -18,5 +19,5 @@ class Solution:
                 
                 cur_combination.pop()
         dfs(0, [])
-        return res if res else []
+        return res
             
