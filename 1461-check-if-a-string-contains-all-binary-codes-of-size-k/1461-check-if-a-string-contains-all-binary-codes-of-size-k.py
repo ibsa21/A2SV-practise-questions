@@ -1,16 +1,12 @@
 class Solution:
     def hasAllCodes(self, s: str, k: int) -> bool:
-        combination = pow(2, k)        
-        taken_combination = set()
-        
-        for i in range(k, len(s)+1):
-            
-            tmp = s[i-k:i]
-            if tmp not in taken_combination:
-                
-                taken_combination.add(tmp)
-                combination -= 1
-                
-                if combination == 0:
-                    return True
+        l, r, total_combination = 0, k-1, pow(2, k)
+        binary_comb  = set()
+        while r < len(s):
+            bin_string = s[l:r+1]
+            if bin_string not  in binary_comb:
+                binary_comb.add(bin_string)
+                if len(binary_comb) == total_combination: return True
+            r += 1
+            l += 1
         return False
