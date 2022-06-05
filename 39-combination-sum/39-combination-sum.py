@@ -6,7 +6,6 @@ class Solution:
             if i >= len(candidates) or sumValue > target:
                 return 
             if sumValue == target:
-                print(comb)
                 ans.append(comb.copy())
                 return
 
