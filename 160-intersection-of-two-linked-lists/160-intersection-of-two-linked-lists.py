@@ -10,26 +10,17 @@ class Solution(object):
         :type head1, head1: ListNode
         :rtype: ListNode
         """
-        visitedA = set()
         visitedB = set()
-        ref = headA
         
-        while headA or headB:
-            # print(headA in visitedB, headB in visitedA, visitedA)
+        while headB:
+            
+            visitedB.add(headB)
+            headB = headB.next
+            
+        while headA:
             if headA in visitedB:return headA
-            if headB in visitedA:return headB
             
-            if headB:
-                visitedB.add(headB)
-                headB = headB.next
-            if headA:
-                visitedA.add(headA)
-                headA = headA.next
-                
-        while ref:
-            if ref in visitedB:return ref
-            
-            ref = ref.next
+            headA = headA.next
         return None
         # for nodes in visitedA:
         #     if nodes in visitedB: return nodes
