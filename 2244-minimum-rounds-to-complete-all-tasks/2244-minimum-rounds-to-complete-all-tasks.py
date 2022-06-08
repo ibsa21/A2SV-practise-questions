@@ -5,8 +5,6 @@ class Solution(object):
         :rtype: int
         """
         counter = Counter(tasks)
-        print(counter)
-        
         ans = 0
         for key in counter:
             if counter[key] < 2:return -1
