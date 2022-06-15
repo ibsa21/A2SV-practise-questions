@@ -12,7 +12,7 @@ class Solution:
             prev_chain = [word[:i] + word[i + 1:] for i in range(len(word))]
             for prev_word in prev_chain:
                 if prev_word in dp: 
-                    dp[word] = dp[prev_word] + 1
+                    dp[word] = max(dp[word], dp[prev_word] + 1)
                     longest_string_chain = max(longest_string_chain, dp[word])
         
         return longest_string_chain
