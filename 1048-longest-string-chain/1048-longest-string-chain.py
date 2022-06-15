@@ -13,6 +13,6 @@ class Solution:
             for prev_word in prev_chain:
                 if prev_word in dp: 
                     dp[word] = max(dp[word], dp[prev_word] + 1)
-                    longest_string_chain = max(longest_string_chain, dp[word])
+            longest_string_chain = max(longest_string_chain, dp[word])
         
         return longest_string_chain
