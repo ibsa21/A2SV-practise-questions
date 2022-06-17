@@ -10,7 +10,10 @@ class Solution:
         #gready + depth first search
         visited = {None}
         
+        #returns true if one or both childs of a node are not covered by camera
         childVisited = lambda parent: parent.left not in visited or parent.right not in visited
+        
+        #returns true if node is root node
         isNodeRoot = lambda node, parent: not parent and node not in visited 
         
         minimum_camera = 0
