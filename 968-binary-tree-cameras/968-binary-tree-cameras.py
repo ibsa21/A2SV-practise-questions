@@ -12,6 +12,7 @@ class Solution:
         
         childVisited = lambda parent: parent.left not in visited or parent.right not in visited
         isNodeRoot = lambda node, parent: not parent and node not in visited 
+        
         minimum_camera = 0
         def dfs(node, parent):
             nonlocal minimum_camera
@@ -22,8 +23,7 @@ class Solution:
 
             if isNodeRoot(node, parent) or childVisited(node):
                 minimum_camera += 1
-                visited.update({node, parent, node.left})
+                visited.update([node, parent, node.left])
             
             return minimum_camera
         return dfs(root, None)
-        # return minimum_camera
