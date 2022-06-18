@@ -1,31 +1,43 @@
+class TrieNode:
+    
+    def __init__(self):
+        self.children = {}
+        self.end_index = -1
+
 class WordFilter:
 
     def __init__(self, words: List[str]):
-        self.trie={}
-        self.weight_marker='$'
-
-        w=self.weight_marker
-
-        for idx, word in enumerate(words):
-
-            word=word + '#' + word
-            length=len(word)
-            print(word)
-            for i in range(length):
-                curr=self.trie
-                curr[w]=idx 
-                for c in word[i:]:
-                    if c not in curr:
-                        curr[c]={}
-                    curr=curr[c]                    
-                    curr[w]=idx  # update the weight of substring                        
-            
-
-    def f(self, prefix: str, suffix: str) -> int:
-        curr=self.trie
-        for c in suffix + '#' + prefix:
-            if c not in curr:
-                return -1
-            curr=curr[c]
+        self.root = TrieNode()
         
-        return curr[self.weight_marker] 
+        for idx, word in enumerate(words):
+            cur_suffix = ""
+            for char in word[::-1]:
+                cur_suffix += char
+                self.insert(cur_suffix + "#" + word, idx)
+        
+    def insert(self, word, idx):
+        cur = self.root
+
+        for char in word:
+            if char not in cur.children:
+                cur.children[char] = TrieNode()
+
+            cur.end_index  = idx
+            cur = cur.children[char]
+
+        cur.end_index = idx
+            
+    def search(self, word, root):
+        for char in word:
+            if char not in root.children:
+                return False
+            root = root.children[char]
+        return root
+    
+    def f(self, prefix, suffix):
+        
+        cur = self.search(suffix[::-1], self.root)
+        if not cur or "#" not in cur.children: return -1
+        
+        cur  = self.search(prefix, cur.children["#"])
+        return -1 if not cur else cur.end_index
