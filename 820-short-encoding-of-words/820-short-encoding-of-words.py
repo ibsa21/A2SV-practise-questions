@@ -6,6 +6,25 @@ class TrieNode:
 class Solution:
     def minimumLengthEncoding(self, words: List[str]) -> int:
         
+        #solution 1
+        prefix_dictionary = set()
+        shortest_encoding_length  = 0
+        
+        #let's sort the words based on their length
+        words = sorted(words, key =  lambda x: len(x))
+        
+        #build trie node
+        for word in words[::-1]:
+            
+            if word not in prefix_dictionary :
+                shortest_encoding_length += (len(word) + 1)
+            cur_suffix = ''
+            for idx, char in enumerate(word[::-1]):
+                cur_suffix = char + cur_suffix
+                prefix_dictionary.add(cur_suffix)
+        return shortest_encoding_length
+        
+        #solution 2
         #let's build a trie node
         root = TrieNode()
         
