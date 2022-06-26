@@ -7,6 +7,7 @@ class Solution:
         total_sum = cardPoints[-1]
         max_difference:int = -float(inf)
         len_removed = len(cardPoints)-k
+        
         for idx in range(len_removed-1, len(cardPoints)):
             left = cardPoints[idx-len_removed] if idx-len_removed > -1 else 0
             right = cardPoints[idx]
