@@ -1,5 +1,9 @@
 class Solution:
     def averageWaitingTime(self, customers: List[List[int]]) -> float:
+        """
+            time complexity: O(n)
+            space complexity: O(1)
+        """
         current_time:int = 0
         waiting_time:int = 0
         len_customer:int = 0
