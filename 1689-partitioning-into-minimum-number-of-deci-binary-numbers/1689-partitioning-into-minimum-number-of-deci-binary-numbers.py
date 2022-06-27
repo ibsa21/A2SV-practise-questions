@@ -10,6 +10,6 @@ class Solution:
             time complexity: O(1)
             space complexity: O(n)
         """
-        set_nums = set(n)
+        set_nums = set(n)                               # type: Set
         for num in range(9, -1, -1):
             if str(num) in set_nums: return num
