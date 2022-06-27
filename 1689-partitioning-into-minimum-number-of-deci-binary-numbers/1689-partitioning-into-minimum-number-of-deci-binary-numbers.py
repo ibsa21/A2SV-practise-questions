@@ -4,7 +4,7 @@ class Solution:
             time complexity: O(n)
             space complexity: O(1)
         """
-        # return max(n)
+        return max(n)
         
         """
             time complexity: O(1)
