@@ -6,9 +6,8 @@ class Solution:
         """
         longest_reach = nums[0]                                     #type: int
         for idx, jump in enumerate(nums):
-            if idx != 0:
-                if idx > longest_reach: return False
-                longest_reach  = max(longest_reach, idx + jump)
+            if idx > longest_reach: return False
+            longest_reach  = max(longest_reach, idx + jump)
         return True
         
         #memoization TLE
