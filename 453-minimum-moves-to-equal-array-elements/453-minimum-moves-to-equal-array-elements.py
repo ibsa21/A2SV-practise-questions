@@ -6,10 +6,8 @@ class Solution:
         
         nums.sort(reverse = True)
         for idx in range(len(nums)):
-            increment_rate = (max_num - min_num)
-            max_num = (nums[idx] + increment_rate)
-            min_num = (nums[-1] + increment_rate)
+            increment_rate = max_num - min_num
+            max_num = nums[idx] + increment_rate
+            min_num = nums[-1] + increment_rate
             number_moves += increment_rate
         return number_moves
-            
-            
