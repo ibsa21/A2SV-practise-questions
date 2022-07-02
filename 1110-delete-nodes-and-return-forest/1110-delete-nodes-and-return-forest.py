@@ -13,7 +13,7 @@ class Solution:
             dfs(node.left, node, True)
             dfs(node.right, node, False)
             if node.val in set_to_delete:
-                if parent != None and is_left:parent.left = None
+                if parent != None and is_left==True:parent.left = None
                 elif parent != None:parent.right = None
                 if node.left and node.left.val not in set_to_delete:
                     list_roots.append(node.left)
