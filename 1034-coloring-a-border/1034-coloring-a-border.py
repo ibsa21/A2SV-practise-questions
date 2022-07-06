@@ -1,6 +1,9 @@
 class Solution:
     def colorBorder(self, grid: List[List[int]], row: int, col: int, color: int) -> List[List[int]]:
-        
+        '''
+            Space complexity: O(row_len * col_len)
+            Time complexity:  O(row_len * col_len)
+        '''
         row_len, col_len = len(grid), len(grid[0])
         visited = set()
         original_grid_color = grid[row][col]
@@ -20,8 +23,6 @@ class Solution:
         def dfs(row, col):
             for r, c in directions:
                 new_row, new_col = row + r, col + c
-                if (new_row, new_col) == (3, 4):
-                    print(is_valid(3, 4), is_border(3, 4))
                 if is_valid(new_row, new_col) and grid[new_row][new_col] ==original_grid_color:
                     if  is_border(new_row, new_col):grid[new_row][new_col] = color
                     visited.add((new_row, new_col))
