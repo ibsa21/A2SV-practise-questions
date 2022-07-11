@@ -1,8 +1,10 @@
 class Solution:
     def getHappyString(self, n: int, k: int) -> str:
-        
+        '''
+            time complexity: O(2**n)
+            space complexity: O(2**n)
+        '''
         path = {'a':('b', 'c'), 'b':('a', 'c'), 'c':('a', 'b')}
-        letters = ['a', 'b', 'c']
         visited = set()
         result = []
         
