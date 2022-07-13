@@ -3,6 +3,7 @@ class Solution:
         
         # step 1: strip leading space
         s = s.lstrip()
+        
         # step 2: determine the sign
         sign = '+'
         if s and  (s[0]=='+' or s[0]=='-'):
@@ -16,10 +17,13 @@ class Solution:
                 s = s[:idx]
                 break
         if not s: return 0
-        num = -int(s) if sign == '-' else int(s)
         
+        #step 4: check range of the number
         left_boundary = pow(-2, 31)
         right_boundary =  pow(2, 31) - 1
+        
+        num = -int(s) if sign == '-' else int(s)
         if num < left_boundary: num = left_boundary
         if num > right_boundary: num = right_boundary
+            
         return num
