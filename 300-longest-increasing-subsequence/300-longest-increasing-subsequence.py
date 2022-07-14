@@ -1,9 +1,23 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         '''
-            Approach: Depth first search + memoization/caching
+            Approach 1: True Dynamic programming
+            Time complexity: O(n)
+            Space complexity: O(n**2)
+        '''
+        dp = [1] * len(nums)
+        for r_idx in range(len(nums)-2, -1, -1):
+            local_max = dp[r_idx]
+            for next_idx in range(r_idx + 1, len(nums)):
+                if nums[next_idx] > nums[r_idx]:
+                    local_max = max(local_max, dp[next_idx] + 1)
+                dp[r_idx] = local_max
+        
+        return max(dp)
+        '''
+            Approach2: Depth first search + memoization/caching
             Space Complexity: O(n)
-            Time complexity: O()
+            Time complexity: O(n ** 2) -> Not sure
         '''
         cache = {}                          # type: Dict[int, int]
         
