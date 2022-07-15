@@ -7,6 +7,30 @@
 class Solution:
     def bstToGst(self, root: TreeNode) -> TreeNode:
         
+        '''
+            Approach 2: DFS only
+            Time: O(n)
+            Space: O(1)
+        '''
+        
+        curr_sum = 0
+        def inorder(node):
+            nonlocal curr_sum
+            if not node: return
+            
+            inorder(node.right)
+            curr_sum += node.val
+            node.val = curr_sum
+            inorder(node.left)
+        inorder(root)
+        return root
+            
+        
+        '''
+            Approach 1: DFS/inorder + binary_search
+            Time: O(nlgn)
+            Space: O(n)
+        '''
         sorted_bst = []
         def inorder(node):
             if not node: return
@@ -35,3 +59,5 @@ class Solution:
             convert_bst_to_greater_tree(node.right)
         convert_bst_to_greater_tree(root)
         return root
+    
+    
