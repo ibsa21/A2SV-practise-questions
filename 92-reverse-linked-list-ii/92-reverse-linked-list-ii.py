@@ -1,41 +1,28 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
-    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
-        before_left, last, count = None, None, 1
-        while count < left:
-            new_node = ListNode(head.val)
-            if not before_left:
-                before_left = new_node
-                last = new_node
-            else:
-                last.next = new_node
-                last = new_node
-            head = head.next
-            count += 1
-            
-        between_left_right, last_between  = None, None
-        while count <= right:
-            new_node = ListNode(head.val)
-            if not between_left_right:
-                between_left_right = new_node
-                last_between = new_node
-            else:
-                new_node.next = between_left_right
-                between_left_right = new_node
-            head = head.next
-            count += 1
-        if last:last.next  = between_left_right
-        else:before_left = between_left_right
-        last = last_between
+    def reverseBetween(self, head, m, n):
+        """
+        :type head: ListNode
+        :type m: int
+        :type n: int
+        :rtype: ListNode
+        """
+        if not head:return None
+        left, right = head, head
+        stop = False
         
-        while head:
-            new_node = ListNode(head.val)
-            last.next = new_node
-            last = new_node
-            head = head.next
-        return before_left
-        
+        def recurseAndReverse(right, m, n):
+            nonlocal left, stop
+            if n == 1:
+                return
+            right = right.next
+            if m > 1:
+                left = left.next
+            recurseAndReverse(right, m - 1, n - 1)
+            if left == right or right.next == left:
+                stop = True
+            if not stop:
+                left.val, right.val = right.val, left.val
+                left = left.next           
+
+        recurseAndReverse(right, m, n)
+        return head
