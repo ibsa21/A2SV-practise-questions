@@ -27,7 +27,6 @@ class Solution:
         visited = set()
         counted_pair = set()
         
-        print(adj_list, leaves)
         def dfs(node, curr_distance, curr_leaf):
             nonlocal number_good_pairs
             if curr_distance > distance: return
