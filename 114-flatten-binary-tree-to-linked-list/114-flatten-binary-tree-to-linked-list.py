@@ -10,17 +10,17 @@ class Solution:
         Do not return anything, modify root in-place instead.
         
         """
-        self.prev_node = None
+        self.next_node = None
         
         def preorder_traversal(node):
             if not node: return 
             
-            preorder_traversal(node.right)
-            preorder_traversal(node.left)
+            right = preorder_traversal(node.right)
+            left = preorder_traversal(node.left)
             
-            
-            node.right = self.prev_node
+            node.right = self.next_node
             node.left = None
-            self.prev_node = node
+            self.next_node = node
+            
         preorder_traversal(root)
         
