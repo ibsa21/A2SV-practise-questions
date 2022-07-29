@@ -7,20 +7,17 @@ class Solution:
         
         if len(s1) > len(s2):
             s1, s2 = s2, s1
-        #find a point at which sentence1 differs from sentence 2 from left
-        left = None
-        for i in range(min(len(s1), len(s1))):
-            if s1[i] != s2[i]:
-                left = i
-                break
+            
+        #take the longest prefix
+        left = 0
+        while left < len(s1) and s1[left]==s2[left]:
+            left += 1
         
-        if left == None: return True
-        if len(s1)==len(s2): return False
+        if left==len(s1): return True
+        #take the longest suffix
+        right = -1
+        while right >= -len(s1) and s1[right]==s2[right]:
+            right-= 1
+        if right + 1==0: right = len(s1)
         
-        i, right = -1, None
-        while i >= -min(len(s1), len(s1)):
-            if s1[i] != s2[i]:
-                break
-            i-= 1
-        right = i
         return s1[:left] + s2[left:right + 1] + s1[left:right + 1] +s1[right + 1:]==s2
