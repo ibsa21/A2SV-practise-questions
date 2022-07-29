@@ -1,10 +1,15 @@
 class Solution:
     def areSentencesSimilar(self, s1: str, s2: str) -> bool:
         
-        # let's assume shortest is sentence 1
+        '''
+            Time complexity: O(N)
+            Space complexity: O(N)
+        '''
+        
         s1 = s1.split()
         s2 = s2.split()
         
+        # let's assume shortest is sentence one
         if len(s1) > len(s2):
             s1, s2 = s2, s1
             
