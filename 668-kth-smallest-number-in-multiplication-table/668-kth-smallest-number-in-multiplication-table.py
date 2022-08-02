@@ -4,15 +4,12 @@ class Solution:
         
         # let's start by building the matrix
         def enough(value):
-            count = 0
-            for i in range(1, m  + 1):
-                count += min(value//i, n)
-            return count >=k
+            return sum([min(value//i, n) for i in range(1, m + 1)])
         
         low, high = 1, m * n
         while low < high:
             mid = low + (high - low)//2
-            if not enough(mid):low = mid + 1
+            if enough(mid) < k:low = mid + 1
             else: high = mid
         
         return low
