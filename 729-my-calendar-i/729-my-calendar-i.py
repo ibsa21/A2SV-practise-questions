@@ -2,7 +2,7 @@ from sortedcontainers import SortedList
 class MyCalendar:
 
     def __init__(self):
-        self.calendar = SortedList()
+        self.calendar = []
         
 
     def book(self, start: int, end: int) -> bool:
@@ -12,7 +12,7 @@ class MyCalendar:
             (i<= len(self.calendar)-1 and end > self.calendar[i][0] )):
                 return False
         
-        self.calendar.add([start, end])
+        self.calendar.insert(i, [start, end])
         return True
             
 
