@@ -7,12 +7,12 @@ class MyCalendar:
 
     def book(self, start: int, end: int) -> bool:
         i = bisect_left(self.calendar, [start, end])
-        self.calendar.add([start, end])
         
         if ((i-1 >=0 and start < self.calendar[i-1][1]) or \
-            (i + 1 <= len(self.calendar)-1 and end > self.calendar[i + 1][0] )):
-                self.calendar.discard([start, end])
+            (i<= len(self.calendar)-1 and end > self.calendar[i][0] )):
                 return False
+        
+        self.calendar.add([start, end])
         return True
             
 
