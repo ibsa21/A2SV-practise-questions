@@ -9,12 +9,8 @@ class MyCalendar:
         i = bisect_left(self.calendar, [start, end])
         self.calendar.add([start, end])
         
-        if i-1 >=0:
-            if start < self.calendar[i-1][1]:
-                self.calendar.discard([start, end])
-                return False
-        if i + 1 <= len(self.calendar)-1:
-            if end > self.calendar[i + 1][0]:
+        if ((i-1 >=0 and start < self.calendar[i-1][1]) or \
+            (i + 1 <= len(self.calendar)-1 and end > self.calendar[i + 1][0] )):
                 self.calendar.discard([start, end])
                 return False
         return True
