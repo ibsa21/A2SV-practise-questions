@@ -1,5 +1,20 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
+        
+        '''
+            Very optimal solution: 
+            Space complexity: O(max(longest_increasing))
+            time complexity: O(nlogn)
+            
+        '''
+        increasing_ds = []
+        for idx, num in enumerate(nums):
+            if not increasing_ds or num > increasing_ds[-1]:
+                increasing_ds.append(num)
+            else:
+                idx_pos = bisect_left(increasing_ds, num)
+                increasing_ds[idx_pos] = num
+        return len(increasing_ds)
         '''
             Approach 1: True Dynamic programming
             Time complexity: O(n)
