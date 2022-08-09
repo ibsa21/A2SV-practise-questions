@@ -1,12 +1,15 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         
+        nums.sort()
         def backtrack(nums, path, result):
             if not nums:
-                result.add(tuple(path))
+                result.append(path)
                 return 
             for i in range(len(nums)):
+                if i > 0 and nums[i]==nums[i-1]:
+                    continue
                 backtrack(nums[:i] + nums[i + 1:], path + [nums[i]], result)
-        result = set()
+        result = list()
         backtrack(nums, [], result)
-        return [list(perm) for perm in result]
+        return result
