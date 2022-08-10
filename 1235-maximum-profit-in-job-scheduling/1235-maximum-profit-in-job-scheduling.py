@@ -1,7 +1,11 @@
 from bisect import bisect_left
 class Solution:
     def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
-        
+        '''
+            Approach: Dynamic Programming (Bottom Up) + Binary Search
+            Time complexity: O(nlog(n))
+            Space complexity: O(n)
+        '''
         jobs = [(startTime[i], endTime[i], profit[i]) for i in range(len(startTime))]
         jobs.sort()
         
