@@ -5,13 +5,13 @@ class Solution:
             if n==0: return 1
             
             if n  < 0:
-                n  = abs(n)
+                n  = -n
                 x = 1/x
             
-            a = solve(x, n//2)
+            half_result = solve(x, n//2)
             if n % 2==0:
-                return a * a
+                return half_result * half_result
             else:
-                return x * (a * a)
+                return x * (half_result * half_result)
         return solve(x, n)
             
