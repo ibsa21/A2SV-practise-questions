@@ -1,39 +1,33 @@
 class TrieNode:
     def __init__(self):
         self.children = {}
-        self.end = False
+        self.isEnd = False
         
 class Solution:
     def longestWord(self, words: List[str]) -> str:
         
-        trie_data = TrieNode()
-        #building trie data
+        root = TrieNode()
         for word in words:
-            root  = trie_data
+            curRoot = root
             for char in word:
-                if char not in root.children:
-                    root.children[char]  = TrieNode()
-                root = root.children[char]
-            root.end = True
+                if char not in curRoot.children:
+                    curRoot.children[char]  = TrieNode()
+                curRoot = curRoot.children[char]
+            curRoot.isEnd = True
         
-        result = ''
-        def dfs(trie, string, char):
-            nonlocal result
-            
-            if trie.end:string += char    
-            else:return string
-                
-            if not trie.children: return string
-            
-            for child_trie in trie.children:
-                res_string = dfs(trie.children[child_trie], string, child_trie)
-                
-                if res_string:
-                    if len(res_string) == len(result):
-                        result = min(res_string, result)
-                    else:
-                        result = res_string if len(res_string ) > len(result) else result
+        words.sort()
         
-        for node in trie_data.children:
-            dfs(trie_data.children[node], '', node)
-        return result
+        def search(word):
+            cur_root = root
+            for char in word:
+                
+                if char not in cur_root.children or cur_root.children[char].isEnd is False:
+                    return False
+                cur_root = cur_root.children[char]
+            return cur_root.isEnd
+        
+        ans = ''
+        for word in words:
+            if search(word) and len(word) > len(ans):
+                ans = word
+        return ans
