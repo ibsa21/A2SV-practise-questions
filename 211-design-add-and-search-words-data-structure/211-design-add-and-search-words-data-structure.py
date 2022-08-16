@@ -1,41 +1,48 @@
 class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.endOfWord = False
+    def __init__(self, char = ''):
+        self.children  = {}
+        self.char = char
+        self.isEnd = False
         
 class WordDictionary:
 
     def __init__(self):
         self.root = TrieNode()
+        
 
     def addWord(self, word: str) -> None:
-        cur = self.root
-        
-        for c in word:
-            if c not in cur.children:
-                cur.children[c] = TrieNode()
-            cur = cur.children[c]
-            
-        cur.endOfWord = True
-        
-    def search(self, word: str) -> bool:
-        
-        def dfs(j, cur):
+        root = self.root
+        for char in word:
+            if char not in root.children:
+                root.children[char] = TrieNode(char)
+            root = root.children[char]
+        root.isEnd = True
+    
+    def dfs(self, i, word, root):
+        if i >=len(word):
+            return root.isEnd
+        if word[i] == '.':
+            for child in root.children:
+                if self.dfs(i + 1, word, root.children[child]):
+                    return True
+        else:
+            if word[i] not in root.children:return False
+            if self.dfs(i + 1, word, root.children[word[i]]): return True
+        return False
 
-            for i in range(j, len(word)):
-                c = word[i]
-                if c == ".":
-                    for child in cur.children.values():
-                        if dfs(i + 1, child):
-                            return True
-                    return False
-                else:
-                    if c not in cur.children:
-                        return False
-                    cur = cur.children[c]
-            return cur.endOfWord
+    def search(self, word: str) -> bool:
+        root = self.root
+        for idx, char in  enumerate(word):
+            if char == '.':
+                # print(word[idx + 1:], word)
+                return self.dfs(idx, word, root)
+                
+            if char not in root.children:
+                return False
+            root = root.children[char]
+        return root.isEnd
         
-        return dfs(0, self.root)
+        
 
 
 # Your WordDictionary object will be instantiated and called as such:
