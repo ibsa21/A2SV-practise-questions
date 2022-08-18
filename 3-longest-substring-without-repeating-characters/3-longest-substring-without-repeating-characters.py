@@ -8,7 +8,6 @@ class Solution:
         
         for idx, char in enumerate(s):
             if lastPos[char] >= left:
-                max_length = max(max_length, idx - lastPos[char])
                 left = lastPos[char] + 1
             lastPos[char]  = idx
             max_length = max(max_length, idx - left + 1)
