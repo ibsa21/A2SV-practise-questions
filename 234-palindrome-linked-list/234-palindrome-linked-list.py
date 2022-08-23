@@ -6,16 +6,15 @@
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         
-        secondHead = head
         def recursive(node):
-            nonlocal secondHead
+            nonlocal head
             if not node: return
             
             if recursive(node.next) is False:return False
             
-            if node.val != secondHead.val:
+            if node.val != head.val:
                 return False
-            secondHead = secondHead.next
+            head = head.next
             return True
         
         return recursive(head)
