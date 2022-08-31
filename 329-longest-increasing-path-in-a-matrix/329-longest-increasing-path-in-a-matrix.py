@@ -8,19 +8,17 @@ class Solution:
         Point  = Tuple[int, int]
         
         memo = {}
-        visited = set()
         def dfs(currPoint:Point, prevValue:int)->int:
             
             if not inbound(*currPoint) or getMatValue(*currPoint) <= prevValue:
                 return 0
             
             if currPoint in memo: return memo[currPoint]
-            # visited.add(currPoint)
             
             result  = 1
             for i, j in [(-1, 0), (1, 0), (0, 1), (0, -1)]:
                 newPoint = (currPoint[0]  + i, currPoint[1] + j)
-                # if newPoint not in visited:
+                # if newPoint not in memo:
                 result = max(result, dfs((newPoint), getMatValue(*currPoint)) + 1)
                 
             memo[currPoint] = result if not currPoint in memo else max(result, memo[currPoint])
@@ -30,8 +28,6 @@ class Solution:
         ans = 1
         for row in range(ROW_LEN):
             for col in range(COL_LEN):
-                # print("hello")
-                ans = max(ans, dfs((row, col), -1))
-                # visited = set()
-                # print(memo)
+                if (row, col) not in memo:
+                    ans = max(ans, dfs((row, col), -1))
         return ans
