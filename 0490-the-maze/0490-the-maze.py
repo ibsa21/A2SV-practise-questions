@@ -5,7 +5,6 @@ class Solution:
         cols = len(maze[0])
         
         dirs = [(-1,0),(1,0),(0,1),(0,-1)]
-        
         inbound = lambda row,col: 0<=row<rows and 0<=col<cols
         
         def move(r,c):
@@ -21,21 +20,14 @@ class Solution:
                 nextPosition.add((row-move_x, col-move_y))
             return nextPosition
         
-        # print(inbound(0,4))
-        print(move(0,4))
-        # for x,y in dirs:
-            # print(move(0,4,x,y))
         
         def dfs(row,col):
             
-            # print((row,col), destination)
             if [row, col] == destination:
-                print("hello")
                 return True
             
             visited.add((row,col))
             nextPositions = move(row,col)
-            # print(nextPositions)
             for new_row, new_col in nextPositions:
                 if (new_row, new_col) not in visited:
                     if dfs(new_row, new_col):
