@@ -4,17 +4,20 @@ class Solution:
         
         visited = [0] * len(nums)
         answer = []
+        num = 0
         def backtrack(path):
-            
+            nonlocal num
             if len(path) == len(nums):
                 answer.append(path.copy())
                 return
             
             for index in range(len(nums)):
-                if not visited[index]:
-                    visited[index] = 1
+                
+                if not num & (1 << index):
+                    num = num | (1 << index)
                     backtrack(path+[nums[index]])
-                    visited[index] = 0
+                    num = num & ~(1 << index)
+
         
         backtrack([])
         return answer
