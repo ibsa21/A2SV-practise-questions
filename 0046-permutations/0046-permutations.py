@@ -2,7 +2,7 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         
         
-        visited = set()
+        visited = [0] * len(nums)
         answer = []
         def backtrack(path):
             
@@ -11,10 +11,10 @@ class Solution:
                 return
             
             for index in range(len(nums)):
-                if index not in visited:
-                    visited.add(index)
+                if not visited[index]:
+                    visited[index] = 1
                     backtrack(path+[nums[index]])
-                    visited.remove(index)
+                    visited[index] = 0
         
         backtrack([])
         return answer
